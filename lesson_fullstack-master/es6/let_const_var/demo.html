@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(a); // undefined    var 会提升变量   提升到全局作用域的顶部
+        // console.log(b); // 报错         const let 不会提升变量
+        console.log(fn());// 函数也会变量提升
+
+        var a = 1;
+        let b = 2;
+        const pizza = '榴莲';
+        // let fn = function () {
+        //     // 函数表达式
+        //     console.log('fn');
+        // }    
+        function fn() {
+            console.log('fn');
+        }
+    </script>
+
+</body>
+</html>

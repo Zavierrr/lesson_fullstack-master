@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 1;
+        let d = 4;
+        {
+            // 代码片段
+            let a = 2;
+            var b = 3;
+            const name = 'Zavier';
+            // name a d 内存地址
+            // 由内到外查找
+            // 冒泡查找 js 存在作用域链
+            console.log(name, a, d);
+        }
+        function func() {
+            {
+                // 代码片段
+                let a = 2;
+                var b = 3;
+                const name = 'Zavier';
+                // name a d 内存地址
+                // 由内到外查找
+                // 冒泡查找 js 存在作用域链
+                console.log(name, a, d);
+            }
+            console.log(b);
+        }
+        func();
+
+        console.log(name, a, '---');
+        // 1. 全局作用域   window
+        // 2. 局部作用域   
+        //     - 函数
+        //     - 块级作用域 {}
+    </script>
+</body>
+
+</html>

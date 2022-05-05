@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #content {
+            /* 不离开文档流 */
+            /* 方案一：--------------------------------------- */
+            /* visibility: hidden;占位隐藏 仍然占据文档流*/
+            /* display: none; 不占位隐藏 脱离文档流*/
+            /* visibility: hidden; */
+            /* 方案二：------------------------------------ */
+            /* inline 行内元素 不能设置宽高 */
+            /* 行内块级元素 既不换行，又可以做盒子设置宽高 */
+            /* 等同于方案一 */
+            /* display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            transform: scale(0, 0); */
+            /* 方案三：------------------------------------ */
+            /* 等同于方案一 */
+            /* opacity: 0; */
+            /* 方案四：------------------------------------- */
+            /* 等同于方案一 */
+            /* display: inline-block; */
+            /* -100%相对于自己的宽度 */
+            /* transform: translate(-100%); */
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="ep1">
+            <span id="content">彪悍的人生不需要解释</span>
+            <input type="text" id="input" value="彪悍的人生不需要解释">
+            <input type="button" id="save" value="Save">
+            <input type="button" id="cancel" value="Cancel">
+        </div>
+    </div>
+
+    <script>
+        const save = document.getElementById('save');
+        const cancel = document.getElementById('cancel');
+        const input = document.getElementById('input');
+        const content = document.getElementById('content');
+
+
+        // 函数式编程
+        function coverToEdit() {
+            content.style.display = 'none';
+            save.style.display = 'inline';
+            cancel.style.display = 'inline';
+            input.style.display = 'inline';
+        }
+
+        content.addEventListener('dblclick', function() {
+            coverToEdit();
+            input.focus();
+        })
+
+        function coverToText() {
+            save.style.display = 'none';
+            cancel.style.display = 'none';
+            input.style.display = 'none';
+            content.style.display = 'inline-block';
+        }
+
+        save.addEventListener('click', function() {
+            content.innerText = input.value;
+            coverToText();
+        })
+
+        cancel.addEventListener('click', function() {
+            coverToText();
+        })
+
+        // DOM 动态样式
+        save.style.display = 'none';
+        cancel.style.display = 'none';
+        input.style.display = 'none';
+        content.style.display = 'inline-block';
+        // setTimeout(() => {
+        //     content.style.display = 'none';
+        //     save.style.display = 'inline';
+        //     cancel.style.display = 'inline';
+        //     input.style.display = 'inline';
+        // }, 1000)
+    </script>
+</body>
+
+</html>

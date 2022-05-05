@@ -1,0 +1,32 @@
+/* 标签选择器 css selector */
+body {
+    background-color: rgb(0, 162, 255);
+}
+/* 基础样式 */
+div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    margin-bottom: 10px;
+}
+/* 业务央视 更细致的选择器 */
+/* 权重更大 优先级更大
+    div p  1分
+    .      10分
+    div.   11分
+    #      100分
+    div#   101分
+*/
+/* 权重相同 选靠后的 */
+#hero {
+    background-color: green;
+}
+div.boy {
+    background-color: yellow;
+}
+.boy {
+    background-color: black;
+}
+.baymax {
+    background-color: white;
+}

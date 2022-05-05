@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异步之数据请求</title>
+</head>
+
+<body>
+    <ul id="posts"></ul>
+    <script>
+        // 由异步变同步
+        let posts = [];
+        let users = [];
+
+        // 封装 dry原则
+        function ajax(url, cb) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.send(); // 发生请求
+            xhr.addEventListener('readystatechange', function (event) {
+                if (event.target.readyState === 4) {
+                    let data = JSON.parse(event.target.responseText);
+                    console.log(data);
+                    cb();
+                }
+            })
+        }
+        // 使用回调函数技巧，实现异步任务嵌套，达到异步任务同步化，控制代码的执行流程
+        ajax('http://127.0.0.1:3000/posts', () => {
+            ajax('http://127.0.0.1:3001/users', () => {
+                console.log('the work is over');
+            })
+        });
+
+        // 异步变同步
+        // fetch('http://127.0.0.1:3000/posts')
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         // console.log(data);
+        //         posts = [...data]; // 扩展运算符
+        //         fetch('http://127.0.0.1:3001/users')
+        //             .then(data => data.json())
+        //             .then(data => {
+        //                 users = [...data];
+        //                 console.log(posts, users, '------');
+        //             })
+        //     })
+
+        // // 前端拉取数据API  xhr 对象
+        // const xhr = new XMLHttpRequest();
+        // xhr.open("GET","http://127.0.0.1:3000/posts",true);
+        // xhr.send(); // 发生请求
+        // // http 请求响应式(请求+响应)
+        // xhr.addEventListener('readystatechange',function(event){
+        //     console.log(event);
+        //     if(event.target.readyState === 4){ // 数据全部到达
+        //         console.log(typeof event.target.responseText);  // string类型
+        //         document.getElementById('posts').innerHTML = 
+        //             // JSON.parse() 将对象字面量转换为数组  parse：分析，解析
+        //             JSON.parse(event.target.responseText).map(item => `
+        //                 <li>
+        //                     ${item.id} ${item.title} ${item.author}
+        //                 </li>
+        //             `);
+        //     }
+        // })
+
+        // fetch('http://127.0.0.1:3000/posts')
+        //     // 二进制文件流
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+    </script>
+</body>
+
+</html>

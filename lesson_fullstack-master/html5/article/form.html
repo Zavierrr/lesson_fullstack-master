@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+</head>
+
+<body>
+    <!-- form用来收集用户数据 -->
+    <form action="/register" method="POST">
+        <!-- fieldset对表单分组，收集不同的信息 -->
+        <fieldset>
+            <!-- legend说明每组的内容描述 -->
+            <legend>基本信息</legend>
+            <div>
+                <!-- placeholder占位符 -->
+                <!-- required：表示必填 -->
+                <label for="username"></label>
+                <input type="text" name="name" id="username" placeholder="请输入用户名" required>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>银行卡信息</legend>
+            <div>
+                <label for="card"></label>
+                <input type="text" name="card" id="card" placeholder="请输入密码" required>
+            </div>
+        </fieldset>
+    </form>
+</body>
+
+</html>

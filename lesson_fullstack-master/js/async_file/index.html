@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <table class="table">
+            <caption>文章表</caption>
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>标题</td>
+                    <td>作者</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <!-- 写法二： -->
+        <div class="row">
+            <div class="col-md-8">1</div>
+            <div class="col-md-4">2</div>
+        </div>
+        <form name="postForm">
+            <div class="form-group">
+                <label for="titleInput">标题</label>
+                <input type="text" name="title" class="form-control" id="titleInput" placeholder="请输入标题" required>
+            </div>
+            <div class="form-group">
+                <label for="titleInput">作者</label>
+                <input type="text" name="author" class="form-control" id="titleInput" placeholder="请输入作者" required>
+            </div>
+            <button type="submit" class="btn btn-default">添加</button>
+        </form>
+    </div>
+
+
+    <script>
+        const oForm = document.forms['postForm'];
+        // console.log(oForm);
+        const oTbody = document.querySelector('table tbody');
+
+        const getPostHtml = post => `
+                <tr>
+                    <td>${post.id}</td>
+                    <td>${post.title}</td>
+                    <td>${post.author}</td>
+                </tr>
+            `;
+
+        let id = 3;
+        oForm.addEventListener('submit', function() {
+            // Form 默认会向后端提交数据
+            console.log('先暂停提交');
+            event.preventDefault(); // 阻止默认事件
+            const title = oForm["title"].value.trim(); // .trim去除空格
+            const author = oForm["author"].value.trim();
+
+            oTbody.innerHTML +=
+                getPostHtml({
+                    id,
+                    title,
+                    author
+                });
+            id++;
+            // 清空表单
+            // oForm.reset();
+        })
+
+        fetch('http://localhost:3000/posts')
+            .then(data => data.json())
+            .then(data => {
+                // 前后端通信的数据格式是 json
+                // console.log(data);
+                oTbody.innerHTML =
+                    data.map(post => getPostHtml(post)).join(' ')
+            })
+    </script>
+</body>
+
+</html>

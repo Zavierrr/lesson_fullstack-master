@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="loginForm">
+        <div>
+            <label for="phoneInput">手机</label>
+            <input type="text" name="phone" id="phoneInput" placeholder="请输入手机" required pattern="/^[0-9]{11}$/" />
+        </div>
+        <div>
+            <button type="submit">提交</button>
+        </div>
+    </form>
+    <script>
+        const oForm = document.forms["loginForm"];
+        oForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const phone = oForm["phone"].value.trim();
+            // console.log(typeof phone);
+            // console.log(phone);
+            // 判断字符串是否为空
+            // required  html5 input才有的属性 对小白友好
+            if (!phone.length) {
+                console.log('手机号不能为空');
+                return;
+            }
+            if (!(/^[0-9]{11}$/.test(phone))) {
+                // console.log(phone.value);
+                alert('手机格式有误!');
+                return;
+            }
+            this.submit();
+
+        })
+    </script>
+</body>
+
+</html>

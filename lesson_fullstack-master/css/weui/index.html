@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>源码</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            outline: 0;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        html {
+            -ms-text-size-adjust: 100%;
+            /* 禁止缩放文字 */
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body,
+        html {
+            height: 100vh;
+            /* 点击高亮  移动端专属 transparent透明的 即把默认的高亮去除*/
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            /* line-height: 1.6; */
+            /* 默认添加苹果字体 */
+            font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+            --weui-BG-0: #111;
+            --weui-BG-2: #191919;
+            --weui-FG-0: rgba(255, 255, 255, 0.8);
+            --weui-FG-1: rgba(255, 255, 255, 0.5);
+            --weui-FG-2: rgba(255, 255, 255, 0.3);
+            --weui-FG-3: rgba(255, 255, 255, 0.1);
+        }
+        
+        .page,
+        body {
+            /* css4 */
+            /* 多次使用，方便修改 */
+            background-color: var(--weui-BG-0);
+        }
+        
+        .weui-cells__title {
+            margin-top: 16px;
+            margin-bottom: 3px;
+            padding-left: 16px;
+            padding-right: 16px;
+            color: rgba(0, 0, 0, 0.5);
+            color: var(--weui-FG-1);
+            font-size: 14px;
+            /* 14*1.4 px= 19.6 px => 19px */
+            line-height: 1.4;
+        }
+        
+        .weui-cells {
+            margin-top: 8px;
+            background-color: var(--weui-BG-2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .weui-cells:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid var(--weui-FG-3);
+            color: rgba(0, 0, 0, 0.1);
+            color: var(--weui-FG-3);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            /* 1像素太粗，y轴方向缩小0.5倍 */
+            -webkit-transform: scaleY(0.5);
+            /* 写在下面，防止覆盖 */
+            transform: scaleY(0.5);
+            z-index: 2;
+        }
+        
+        .weui-cells__title+.weui-cells {
+            margin: 0;
+        }
+        
+        .weui-cell {
+            padding: 16px;
+            position: relative;
+            /* 弹性布局早期叫box布局 */
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            /* 纵轴对齐 */
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            /* 8位小数，精密 */
+            line-height: 1.41176471;
+            font-size: 17px;
+            color: rgba(0, 0, 0, 0.9);
+            color: var(--weui-FG-0);
+        }
+        
+        .weui-cell__bd {
+            /* 主元素 */
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .weui-cell__ft {
+            text-align: right;
+            color: rgba(0, 0, 0, 0.5);
+            color: var(--weui-FG-1);
+        }
+        
+        .weui-cell_access .weui-cell__ft:after {
+            content: " ";
+            width: 12px;
+            height: 24px;
+            -webkit-mask-position: 0 0;
+            mask-position: 0 0;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: 100%;
+            mask-size: 100%;
+            background-color: currentColor;
+            color: rgba(0, 0, 0, 0.3);
+            color: var(--weui-FG-2);
+            -webkit-mask-image: url(data:image/svg+xml,%3Csvg%20width%3D%2212%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2.454%206.58l1.06-1.06%205.78%205.779a.996.996%200%20010%201.413l-5.78%205.779-1.06-1.061%205.425-5.425-5.425-5.424z%22%20fill%3D%22%23B2B2B2%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E);
+            mask-image: url(data:image/svg+xml,%3Csvg%20width%3D%2212%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2.454%206.58l1.06-1.06%205.78%205.779a.996.996%200%20010%201.413l-5.78%205.779-1.06-1.061%205.425-5.425-5.425-5.424z%22%20fill%3D%22%23B2B2B2%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E);
+            position: absolute;
+            top: 50%;
+            right: 0;
+            margin-top: -12px;
+            margin-right: 16px;
+        }
+        
+        .weui-cell__desc {
+            font-size: 12px;
+            color: var(--weui-FG-2);
+            line-height: 1.4;
+            padding-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weui-cells__title">设置</div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
+                    alt="" style="width: 20px; margin-right: 16px; display: block;">
+            </div>
+            <div class="weui-cell__bd">蓝牙</div>
+            <div class="weui-cell__ft">打开</div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
+                    alt="" style="width: 20px; margin-right: 16px; display: block;">
+            </div>
+            <div class="weui-cell__bd">蜂窝网络</div>
+            <div class="weui-cell__ft">打开</div>
+        </div>
+    </div>
+    <div class="weui-cells__title">带跳转的列表项</div>
+    <div class="weui-cells">
+        <a href="www.baidu.com" class="weui-cell weui-cell_access">
+            <div class="weui-cell__hd">
+            </div>
+            <div class="weui-cell__bd">
+                <span>
+                    蓝牙
+                </span>
+                <div class="weui-cell__desc">副标题</div>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+    </div>
+</body>
+
+</html>

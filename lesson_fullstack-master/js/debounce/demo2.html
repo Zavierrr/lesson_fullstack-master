@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="debounce" autofocus placeholder="请输入您要搜索的内容">
+
+    <script>
+        window.onload = function() {
+            let t = 2000;
+            let t1 = +new Date(); // 时间戳  日期对象  + 表示类型转换 自动转化成整数类型
+            const input = document.getElementById('debounce');
+            // const ajax = (event) => {
+            //     let t2 = +new Date();
+            //     let keyword = event.target.value;
+            //     console.log(keyword);
+            //     if (t2 - t1 > t) {
+            //         console.log('--------');
+            //         t1 = t2;
+            //     }
+            // }
+
+            // 什么是回调函数
+            // 1. keyup   ajax事件处理函数在一开始就声明    放在事件池里  event loop
+            // 2. 事件处理函数是在事件发生时触发的
+            // 4. 一般的函数在声明时就执行
+            // 3. 异步的，回到event池子里找出事件处理函数调用并执行
+            const ajax = (event) => {
+                console.log('搜索', event.target.value);
+            }
+            const debounce = (cb, t) => {
+                return cb;
+            }
+            const debounceAjax = debounce(ajax, t);
+            input.addEventListener('keyup', debounceAjax);
+
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>送花</title>
+</head>
+
+<body>
+    <script>
+        // 浏览器 上网代理 运行界面时，为js提供宿主环境  其中Chrome最快
+        // var let const 是 js 常、变量声明的关键字
+        // var es5之前  let const es6（2015）之后
+
+        // 作用域
+        function func() {
+            let c = 3; // 局部变量
+        }
+        // 全局变量
+        // 变量名   地址的映射 属于运行环境的作用域
+        let d; // undefined  没有值  类型未定义 空间起始地址有，空间大小未定义
+        var a = 1;
+        let b = 2;
+
+        // const name = "Zavier";
+        // let age = 18;
+        // const hometown = "赣州";
+        // const sex = '男';
+        // 除了简单数据类型之外，一切都是对象
+        // 对象 {字面量} 运行在全局作用域 
+        const obj = {
+            name: 'Zavier',
+            age: 19,
+            hometown: '赣州',
+            sex: '男'
+        }
+
+        const myself = {
+            name: '咚咚锵',
+            age: 20,
+            hometown: '南昌',
+            sex: '男',
+            isSingle: false,
+            gf: null,
+            work_status: undefined,
+            sendFlower(a,b,c) {
+                b.getFlower(a,b,c);
+            }
+        }
+        // []数组 {}对象，包括属性和方法
+        const beauty = {
+            name: '蹦恰恰',
+            age: 18,
+            getFlower(a,b,c) {
+                console.log('收到了' + a.name + '送的花');
+            }
+        }
+
+        const friend = {
+            name: '闺蜜',
+            hometown: '赣州',
+            getFlower(a,b,c) {
+                console.log('哇哦！');
+                b.sendFlower(a,b,c);
+            },
+            
+            sendFlower(a,b,c) {
+                c.getFlower(a,b,c);
+            }
+        }
+        myself.sendFlower(myself,friend,beauty);
+
+    </script>
+</body>
+
+</html>

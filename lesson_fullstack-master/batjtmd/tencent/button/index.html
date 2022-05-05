@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEUI-Button</title>
+    <link rel="stylesheet" href="./btn.css">
+</head>
+<body>
+    <!-- html 结构 由外到内 从上到下 -->
+    <!-- 学会取类名  从大厂学习词汇
+        1. page结构命名套路
+        2. BEM 国际命名规范 （Block Element Modifier）
+            - page Block   兴起一个区块 B
+            - page__hd  子元素 两个下划线 Element  E
+            - Modifier  状态 _ 一个下划线
+        3. 组件命名规范（项目或公司名前缀 + 组件名）
+            - 项目名或公司名作为前缀
+                例如：.weui-btn .bd-btn .jd-btn
+            .weui-messagebox>.weui-messagebox__hd{弹窗标题}>p{}+.weui-messagebox__bd>.weui-messagebox__ft -->
+    
+    <div class="page">
+        <div class="page__hd">
+            <h1 class="page__title">Button</h1>
+            <div class="page__desc">按钮</div>
+        </div>
+        <div class="page__bd">
+            <!-- href="javascript:;" 阉割超链接 -->
+            <div class="button-sp-area">
+                <a href="javascript:;" class="weui-btn weui-btn_primary">主要操作</a>
+                <!-- BEM
+                weui-btn 按钮基础类
+                再加状态名 -->
+                <!-- 一个下划线表示 Modifier -->
+                <a href="javascript:;" class="weui-btn weui-btn_default">次要操作</a>
+                <a href="javascript:;" disabled class="weui-btn weui-btn_disabled">次要操作</a>
+
+            </div>
+        </div>
+        <div class="page__ft"></div>
+    </div>
+</body>
+</html>

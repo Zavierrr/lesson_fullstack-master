@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #content {
+            /* 不离开文档流 */
+            /* 方案一：--------------------------------------- */
+            /* visibility: hidden;占位隐藏 仍然占据文档流*/
+            /* display: none; 不占位隐藏 脱离文档流*/
+            /* visibility: hidden; */
+            /* 方案二：------------------------------------ */
+            /* inline 行内元素 不能设置宽高 */
+            /* 行内块级元素 既不换行，又可以做盒子设置宽高 */
+            /* 等同于方案一 */
+            /* display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            transform: scale(0, 0); */
+            /* 方案三：------------------------------------ */
+            /* 等同于方案一 */
+            /* opacity: 0; */
+            /* 方案四：------------------------------------- */
+            /* 等同于方案一 */
+            /* display: inline-block; */
+            /* -100%相对于自己的宽度 */
+            /* transform: translate(-100%); */
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="ep1">
+            <span id="content">彪悍的人生不需要解释</span>
+            <input type="text" id="input" value="彪悍的人生不需要解释">
+            <input type="button" id="save" value="Save">
+            <input type="button" id="cancel" value="Cancel">
+        </div>
+    </div>
+
+    <script>
+        // JS基于原型式面向对象
+        function EditInPlace() {
+            // 有什么好处？    把DOM元素作为属性
+            this.content = document.getElementById('content');
+            this.save = document.getElementById('save');
+            this.cancel = document.getElementById('cancel');
+            this.input = document.getElementById('input');
+
+            this.bindEvent();
+        }
+        EditInPlace.prototype = {
+            // 把方法罗列在一起
+            coverToEdit() {
+                this.content.style.display = 'none';
+                this.save.style.display = 'inline';
+                this.cancel.style.display = 'inline';
+                this.input.style.display = 'inline';
+            },
+            coverToText() {
+                this.content.style.display = 'inline';
+                this.save.style.display = 'none';
+                this.cancel.style.display = 'none';
+                this.input.style.display = 'none';
+            },
+            bindEvent() {
+                // 函数是事件的回调函数时，this指向元素
+                // constructor  this -> 实例对象（editor）
+                // 双击时，this丢失，被覆盖，怎么办？   
+                // 方法一：------------------------------------------------------
+                // let that = this; // 用变量that 保存this，作用域链方式
+                // 方法二：------------------------------------------------------
+                // 箭头函数，通过作用域链往上查找
+
+                this.content.addEventListener('dblclick', () => {
+                    this.coverToEdit();
+                });
+                this.save.addEventListener('click', () => {
+                    this.content.innerText = this.input.value;
+                    this.coverToText();
+                });
+                this.cancel.addEventListener('click', () => {
+                    this.coverToText();
+                })
+            }
+        }
+
+        // html + css 已经加载完成后才能用
+        window.onload = function() {
+            let editor = new EditInPlace();
+            editor.coverToText();
+            editor.bindEvent();
+        }
+    </script>
+</body>
+
+</html>

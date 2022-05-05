@@ -1,0 +1,18 @@
+{
+  "name": "async_api",
+  "version": "1.0.0",
+  "description": "1. xhr 与 fetch 关系\r     功能都是一样的，xhr是旧时代， fetch 是es6最新的api  \r     fetch('http://127.0.0.1:3000/posts')\r         .then(data => data.json())\r         .then(data => data)",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server",
+    "dev": "json-server --watch db.json",
+    "dev2": "json-server --watch user.json --port 3001"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.17.0",
+    "live-server": "^1.2.2"
+  }
+}

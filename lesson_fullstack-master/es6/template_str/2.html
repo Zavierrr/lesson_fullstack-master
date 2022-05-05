@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table id="userTable">
+
+    </table>
+    <script>
+        const person = {
+            name: 'Zavier',
+            hometown: '赣州',
+            city: '江西',
+            job: 'Web Developer',
+            bio: '121'
+        }
+        const tableElement = document.querySelector('#userTable');
+        console.log(tableElement);
+        tableElement.innerHTML += 
+        `<tr>
+            <td>${person.name}</td>
+            <td>${person.hometown}</td>
+            <td>${person.city}</td>
+            <td>${person.job}</td>  
+            <td>${person.bio}</td>
+        </tr>`;
+    </script>
+
+
+</body>
+
+</html>

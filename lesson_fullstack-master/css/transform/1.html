@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .test_transform {
+            width: 10px;
+            height: 200px;
+            background-color: #c685d9;
+            margin: 100px auto;
+            /* 变形属性在3维空间中发生，  */
+            /* transform-origin: left  top; */
+            transform: rotateX(120deg);
+            /* 那个点是不动的 */
+        }
+        
+        .wrap {
+            perspective: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+    
+        <div class="test_transform"></div>
+        </div>
+
+</body>
+
+</html>

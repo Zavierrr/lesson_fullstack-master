@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+</head>
+
+<body>
+    <script>
+        // 书本对象
+        let book = {
+            id: '',
+            name: '',
+            author: '',
+            price: null
+        }
+        // 购物车数组
+        const shopCart = [
+            {
+                id: '001',
+                name: '《你不知道的JavaScipt》',
+                author: '大佬1',
+                price: 66
+            },
+            {
+                id: '002',
+                name: '《你不知道的JAVA》',
+                author: '大佬2',
+                price: 77
+            },
+            {
+                id: '003',
+                name: '《你不知道的Python》',
+                author: '大佬3',
+                price: 88
+            }
+        ];
+
+        function sum() {
+            let money = 0;
+            for (let i = 0; i < shopCart.length; i++) {
+                money += shopCart[i].price;
+                // console.log(money);
+            }
+            console.log('总金额为' + money + '元！');
+        }
+        sum();
+        
+
+    </script>
+</body>
+
+</html>

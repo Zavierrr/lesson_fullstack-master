@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="btn">Stop</button>
+    <!-- 每隔多久定时一下
+    启用一个定时器（setInterval）， 在点击下按钮时， 消除定时器
+    setTimeOut 运行一次就停止 -->
+    <script>
+        const btn = document.querySelector('#btn');
+        btn.addEventListener('click', () => {
+            // console.log(this);
+            clearInterval(interval)
+        })
+
+        let interval = null;
+        let i = 1;
+        let a = 1;
+        // 定时器对象，返回的是定时器ID
+        interval = setInterval(() => {
+            console.log(i++);
+            // console.log(a);         // 1
+            // console.log(this.a);    // undefined
+            // console.log(b);         // c is not defined
+            // console.log(this.b);    // undefined
+        }, 1000)
+        console.log(interval, '----');
+    </script>
+</body>
+
+</html>

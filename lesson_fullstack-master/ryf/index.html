@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            width: 100%;
+            height: 500px;
+        }
+        
+        .aside {
+            width: 300px;
+            height: 100px;
+            background-color: green;
+            float: left;
+        }
+        
+        .main {
+            background-color: red;
+            height: 100px;
+            /* flex: 1; */
+            /* ---------------------------------------- */
+            /* float: left;
+            width: calc(100% - 300px); */
+            /* ---------------------------------------- */
+            overflow: hidden;
+            /* ---------------------------------------- */
+            /* margin-left: 300px; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 自适应的两列式布局 -->
+    <!-- 设计一套布局，两列式 aside 300px，剩下的交给main -->
+    <!-- 侧边栏固定，主栏宽度自适应 -->
+
+    <!-- 方法一：flex -->
+    <!-- 方法二：float + calc(100% - 300px) -->
+    <!-- 方法三：float + margin-left |  -->
+    <!-- 方法四：float + overflow:hidden -->
+
+    <div class="container">
+        <aside class="aside"></aside>
+        <main class="main"></main>
+    </div>
+</body>
+
+</html>

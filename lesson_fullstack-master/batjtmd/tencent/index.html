@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>腾讯日</title>
+</head>
+<body>
+    <script>
+        // 鸭子国国王，喜欢听音乐，召集1000只鸭子，组成会嘎嘎叫的合唱团；
+
+        // const
+        // 1. 如果是简单数据类型，值不可改变
+        // 2. 如果是复杂数据类型，值可以变，但类型不能变
+        //const choir = []; // 合唱团数组 复杂数据类型
+
+        // js 没有Arry 数组类型
+        // 除了简单数据类型，其他的都是对象
+        // 数组是Object 的一种
+        //console.log(typeof(choir)); // Object
+
+        // 流程式思维 -> 封装成一个函数
+        // 看到一个PC 设计稿时，不在盯着html 细节，构思组件
+        // 函数    对代码的封装，组成一个功能单元
+        // 代码工作划分成一个个函数
+        // 每个函数都只做一件事
+
+        let duck = {
+            sing() {
+                console.log('嘎嘎嘎');
+            }
+        }
+
+        let cat = {
+            sing() {
+                console.log('喵喵喵');
+            }
+        }
+
+        let chick = {
+            sing() {
+                console.log('嘎嘎嘎');
+            }
+        }
+
+        /**
+         *  @func 组建1000只鸭子的合唱团
+         *  @return {Arry[{}]}
+         */
+        const choir = [];
+        // function buildChoir(animal) {
+        //     let arr = [];
+        //     for (let i = 0; i < 1000; i++){
+        //         arr.push(duck);
+        //     }
+        //     return arr;
+        // }
+
+        function buildChoir(animal) {
+            if (animal.sing && typeof animal.sing === 'function'){
+                choir.push(animal)
+            }
+        }
+        
+        for (let i = 0; i < 999; i++){
+            buildChoir(duck);
+        }
+
+        buildChoir(chick);
+
+        if (choir.length >= 1000) {
+            console.log('合唱团招募完成了！');
+        }
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .page {
+            background-image: url("./images/pic.jpg");
+            /* background-position: center; */
+            background-size: cover;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            margin: 10% 40%;
+        }
+        
+        .page__title {
+            width: 80px;
+            height: 18px;
+            line-height: 18px;
+            background-color: orangered;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            top: 19px;
+            left: -13px;
+            transform: rotate(-45deg);
+            position: absolute;
+        }
+        
+        .page__desc {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-size: 13px;
+            color: white;
+            padding: 3px;
+            background-color: rgb(95, 94, 94);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="page__title">自制剧</div>
+        <div class="page__desc">更新到101集</div>
+    </div>
+</body>
+
+</html>

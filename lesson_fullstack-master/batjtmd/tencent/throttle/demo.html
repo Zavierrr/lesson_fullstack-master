@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 无障碍访问 -->
+    <!-- 自动聚焦 autofocus | input.focus() -->
+    <label for="keywords">keywords:</label>
+    <input type="text" name="" id="keywords">
+    <script>
+        const input = document.querySelector('#keywords');
+        // focus 表单聚焦时间
+        input.addEventListener('focus', function(event) {
+            console.log('1');
+        })
+
+        // input.addEventListener('change', function(event) {
+        //     console.log('改变'); // 取消聚焦（鼠标 + 光标）才会输出
+        // })
+        // input.addEventListener('keyup', function(event) {
+        //     console.log('1'); // 即时反馈输出，打印两次
+        // })
+
+        // 配合回车使用
+        input.addEventListener('keydown', function(event) {
+            if (event.keyCode == 13) {
+                console.log('提交');
+            }
+        })
+
+        input.addEventListener('input', function(event) {
+            console.log('1'); // 实时收集值
+        })
+
+        // input.focus();
+    </script>
+</body>
+
+</html>

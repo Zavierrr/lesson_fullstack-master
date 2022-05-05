@@ -1,0 +1,30 @@
+{
+    "posts": [{
+            "id": 1,
+            "title": "云飞带你玩unity3D",
+            "author": "彭云飞"
+        },
+        {
+            "id": 2,
+            "title": "event loop",
+            "author": "光光同学"
+        }
+
+    ],
+    "comments": [{
+            "id": 1,
+            "body": "牛逼！",
+            "postId": 1
+        },
+        {
+            "id": 2,
+            "body": "写的太好了！",
+            "postId": 1
+        },
+        {
+            "id": 2,
+            "body": "学习了！",
+            "postId": 2
+        }
+    ]
+}

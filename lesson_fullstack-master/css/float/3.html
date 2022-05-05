@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            width: 150px;
+            height: 150px'
+
+        }
+
+        .div1 {
+            border: 3px solid black;
+        }
+
+        .div2 {
+            border: 3px solid red;
+            /* overflow: hidden; */
+        }
+
+        .div2 img {
+            float: left;
+            padding: 10px;
+        }
+
+        .div2:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            /* 清除浮动 */
+            clear: both;
+            /* visibility: hidden;  */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic2.zhimg.com%2Fv2-8caec546245e377a2306db8d53157e2d_r.jpg%3Fsource%3D1940ef5c&refer=http%3A%2F%2Fpic2.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1653551040&t=f465bde436133a0f024090a6c66cbef2"
+            alt="">
+    </div>
+    <div class="div2">
+        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-b15d0c819b8b9c817448bf169d94627d_r.jpg%3Fsource%3D1940ef5c&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1653552855&t=ad1d9538c0f03bcf0482ab88134dc297"
+            alt="">
+    </div>
+    <div>
+        <div></div>
+    </div>
+</body>
+
+</html>

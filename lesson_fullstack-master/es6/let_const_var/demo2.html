@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            name: 'Zavier',
+            hobbies: ['电影', '音乐']
+        }
+        // Object 调用总对象的 freeze 方法
+        // Object.freeze(obj) 
+        Object.freeze(obj); // 仅浅层不可改变，push、unshift等可改变
+        
+        obj.name = '111';
+        // shift 头部弹出 unshift 头部插入
+        // push 尾部插入 pull 尾部弹出
+        obj.hobbies.unshift('游戏');
+        console.log(obj);
+        
+        // 如何让 obj 不允许改变？
+    </script>
+</body>
+</html>

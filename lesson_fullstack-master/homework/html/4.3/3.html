@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+h1:first-child{
+background:#ff00aa;
+}
+h1:nth-child(2)
+{
+background:#cc00ff;
+}
+p:nth-child(2n)
+{
+background:#ff0000;
+}
+p:nth-child(2n+1)
+{
+background:#b3ff00;
+}
+
+span{
+    background: tomato;
+    display: block;
+    min-height: 50px;
+    min-width: 10px;
+}
+span:empty{
+    background-color: turquoise;
+}
+</style>
+</head>
+<body>
+
+<h1>这是标题1</h1>
+<h1>这是标题2</h1>
+<p>第一个段落。</p>
+<p>第二个段落。</p>
+<p>第三个段落。</p>
+<p>第四个段落。</p>
+
+<p><b>注释：</b>Internet Explorer 不支持 :nth-child() 选择器。</p>
+
+<span>1</span>
+<span> </span>
+<span></span>
+
+</body>
+</html>
