@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模态框</title>
+    <style>
+        #modal {
+            height: 200px;
+            width: 200px;
+            line-height: 200px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="open">打开弹窗</button>
+    <button id="close">关闭弹窗</button>
+
+    <script>
+        // const Modal = function () {
+        //     // dom -> body
+        //     this.modalBox = document.createElement('div');
+        //     this.modalBox.id = 'modal';
+        //     this.modalBox.style.display = 'none';
+        //     this.modalBox.innerText = '我是全局唯一的模态框';
+        //     document.body.appendChild(this.modalBox);
+        // }
+        // let modal = new Modal();
+
+        // 没有触发点击事件就已经渲染在界面上
+        var modal = document.createElement('div');
+        modal.id = 'modal';
+        modal.style.display = 'none';
+        modal.innerText = '我是全局唯一的模态框';
+        document.body.appendChild(this.modal); // 用this 的话，必须用var 将modal挂载在全局
+
+        const openButton = document.getElementById('open'),
+            closeButton = document.getElementById('close');
+
+        openButton.addEventListener('click', function () {
+            // 弹窗显示
+            modal.style.display = 'block';
+        });
+        closeButton.addEventListener('click', function () {
+            // 隐藏已显示的弹窗
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模态框</title>
+    <style>
+        #modal {
+            height: 200px;
+            width: 200px;
+            line-height: 200px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="open">打开弹窗</button>
+    <button id="close">关闭弹窗</button>
+
+    <script>
+        // Modal类，可以实例化很多次，而有个类只实例一次，叫单例模式
+        // 推迟 Modal 的实例化的时间，直到第一次显示
+        // const Modal = function () {
+        //     // dom -> body
+        //     this.modalBox = document.createElement('div');
+        //     this.modalBox.id = 'modal';
+        //     this.modalBox.style.display = 'none';
+        //     this.modalBox.innerText = '我是全局唯一的模态框';
+        //     document.body.appendChild(this.modalBox);
+        // }
+        // let modal = new Modal(); // 直接实例化Modal
+        // 方法一：
+        // let modal = null;
+
+        // 方法二：
+        // 立即执行函数
+        // 构造Modal 类：
+        //     1. 立即执行函数 + 返回函数
+        //         函数嵌套函数（闭包）
+        //         因此return的函数不会被回收、modal变量也不能回收，不然找不到
+        //     2. return  如果在构造函数中，手动指定return，return 后的对象才是是实例对象  
+        //     满足单例模式
+        const Modal = (function () {
+            // console.log('立即执行函数');
+            let modal = null; // 模态框
+            return function () {
+                if (!modal) { // 第一次 new modal
+                    modal = document.createElement('div');
+                    modal.id = 'modal';
+                    modal.style.display = 'none';
+                    modal.innerText = '我是全局唯一的模态框';
+                    document.body.appendChild(modal);
+                }
+                return modal
+            }
+        })();
+        const openButton = document.getElementById('open'),
+            closeButton = document.getElementById('close');
+
+        // open close 都会实例化Modal，
+        // 单例模式：无论实例化多少次，返回的都是同一个实例
+        openButton.addEventListener('click', function () {
+            // 弹窗显示
+            let modal1 = new Modal();
+            modal.style.display = 'block';
+        });
+        closeButton.addEventListener('click', function () {
+            // 隐藏已显示的弹窗
+            let modal2 = new Modal();
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
