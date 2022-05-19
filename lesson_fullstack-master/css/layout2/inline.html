@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        span {
+            /* display: inline-block; */
+            font-size: 20px;
+            line-height: 1;
+            width: 50px;
+            height: 50px;
+            color: white;
+            background-color: green;
+            margin-top: 10px;
+            /*无效*/
+            padding-top: 20px;
+            /*无效*/
+            margin-left: 100px;
+            padding-left: 100px;
+        }
+    </style>
+</body>
+<span>ccc
+    <div style="display: inline-block;">
+        ddd
+    </div>
+</span>
+
+</html>

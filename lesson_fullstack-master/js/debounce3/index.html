@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        .box {
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /* transform: translate(-50%, -50%); */
+            margin-left: -100px;
+            margin-top: -100px;
+            font-size: 40px;
+            color: white;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">1</div>
+    <script>
+        let count = 1;
+        const box = document.querySelector('.box');
+
+        function getUserAction(e) {
+            // console.log(e);
+            box.innerHTML = ++count;
+        }
+        function debounce(func, wait, immediate) {
+            // 闭包空间
+            // 运行一次
+            // 闭包函数执行期间，可以访问到声明时位于闭包空间的变量
+            var timeout;
+            // 返回函数
+            function debounced(e) {
+                // 执行期间
+                var context = this;
+                var args = arguments;
+                if (timeout) clearTimeout(timeout); // 防抖的关键
+                // console.log(timeout); // 定时器id未被清除，清除的是定时器期间要执行的代码，使之不执行
+                if (immediate) {
+                    var callNow = !timeout;
+                    timeout = setTimeout(function () {
+                        // 鼠标停止，设置为空，等定时器内部代码执行（timeout = null），使得下次触发鼠标移动事件时，callNOw为真，执行下面的if判断
+                        // 鼠标不停止，一直触发事件监听，一直执行57行代码（清除了定时器），导致callNOw一直为假，无法执行下面的if判断
+                        timeout = null;
+                    }, wait)
+                    if (callNow) func.apply(context, args);
+                } else {
+                    timeout = setTimeout(function () {
+                        func.apply(context, args);
+                    }, wait)
+                }
+            }
+            return debounced;
+        }
+        // debounce 给我们要执行的getUserAction 函数赋予防抖的能力
+        // 减少执行次数至最后一次
+        // 增加需求：
+        // 1.先执行（true），还是后执行（false） 依靠参数来决定
+        // 2.支持取消功能
+        const setUserAction = debounce(getUserAction, 1000, true);
+        box.addEventListener('mousemove', setUserAction);
+    </script>
+</body>
+
+</html>

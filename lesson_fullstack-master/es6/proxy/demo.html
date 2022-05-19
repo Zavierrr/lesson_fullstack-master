@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 传统面向对象 继承
+        class MovieCollection extends Array {
+            // constructor(name, ...items) { // ... reset运算符
+            //     super();  // 调用父类的构造函数
+            //     this.items = [...items];
+            //     this.name = name;
+            // }
+            constructor(name, ...items) { // ... reset运算符
+                super(...items);  // 调用父类的构造函数
+                this.name = name;
+            }
+
+            add(movie) {
+                this.push(movie);
+            }
+            topRated(limit = 10) {  // 默认值
+                return this.sort((a, b) => b.stars - a.stars).slice(0, limit);
+                // return this.filter(movie => movie.stars>7);
+            }
+        }
+
+        const movies = new MovieCollection('Wes\'s Fav Movies',
+            { name: 'Bee Movie', stars: 8 },
+            { name: 'Star Wars Trek', stars: 1 },
+            { name: 'Virgin Suicides', stars: 7 },
+            { name: 'King Of the Road', stars: 8 },
+        );
+        movies.add({ name: '战狼', stars: 9 });
+        console.log(movies);
+        console.log(movies.topRated());
+    </script>
+</body>
+
+</html>

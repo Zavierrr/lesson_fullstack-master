@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖节流</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 250px;
+            height: 250px;
+            background-color: green;
+            text-align: center;
+            line-height: 250px;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">0</div>
+    <script>
+        // 太频繁，降低到 1s 执行 几次 定时器
+        const box = document.querySelector('.box');
+        let count = 0;
+        // 降低频率
+        // 为什么是闭包？
+        // 函数嵌套了函数
+        // 事件处理函数
+        function debounce(func, wait) {
+            // 闭包空间  
+            // 事件处理函数
+            var timeout;
+            return function () {
+                // 反复移动鼠标时，不执行，执行最后一次
+                // func(event);
+                var context = this;
+                var args = arguments;
+                // console.log(args);
+                clearTimeout(timeout);
+                // 返回定时器的id
+                timeout = setTimeout(function () {
+                    func.apply(context, args);
+                }, wait);
+
+            }
+        }
+
+        // mouseover 要做的事情
+        function getUserAction(e) {
+            // console.log(e);
+            box.innerText = ++count;
+        }
+
+        // 函数的参数或函数的返回值是函数时，叫高阶函数
+        box.addEventListener('mousemove', debounce(getUserAction, 1000));
+
+    </script>
+</body>
+
+</html>
