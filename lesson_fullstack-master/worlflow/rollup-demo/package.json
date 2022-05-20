@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "rollup": "^2.74.1"
+  },
+  "name": "rollup-demo",
+  "description": "- 模块化 module 方案\r     JS 早期没有模块化方案",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "live-server",
+    "build": "rollup m2.js --file bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
