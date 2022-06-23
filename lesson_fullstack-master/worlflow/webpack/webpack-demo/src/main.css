@@ -1,0 +1,12 @@
+body{
+    margin: 0 auto;
+    padding: 0 auto;
+    max-width: 888px;
+    background: #f4f8fb;
+}
+
+#imgBox{
+    height: 400px;
+    width: 400px;
+    background-size: contain;
+}
